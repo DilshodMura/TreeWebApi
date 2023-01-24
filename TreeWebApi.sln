@@ -3,15 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TreeWebApi", "TreeWebApi\TreeWebApi.csproj", "{FA5E105F-5D82-48CA-B4E4-8D67069CB723}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TreeWebApi", "TreeWebApi\TreeWebApi.csproj", "{FA5E105F-5D82-48CA-B4E4-8D67069CB723}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository", "Repository\Repository.csproj", "{F725089D-D366-46CA-8A1D-B1BBB9BCD270}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repository", "Repository\Repository.csproj", "{F725089D-D366-46CA-8A1D-B1BBB9BCD270}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Database", "Database\Database.csproj", "{D97162E4-1126-472D-BC5F-DAE431E2C154}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Database", "Database\Database.csproj", "{D97162E4-1126-472D-BC5F-DAE431E2C154}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{0F267D20-1575-4A84-BA9B-5EC6015BD355}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{0F267D20-1575-4A84-BA9B-5EC6015BD355}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "Service\Service.csproj", "{51C4CA5A-27E8-42DC-9AED-62D617E9EE0B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service", "Service\Service.csproj", "{51C4CA5A-27E8-42DC-9AED-62D617E9EE0B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseFirst", "DatabaseFirst\DatabaseFirst.csproj", "{D25F465C-3F23-4335-A0C5-022363F8D70A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{51C4CA5A-27E8-42DC-9AED-62D617E9EE0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{51C4CA5A-27E8-42DC-9AED-62D617E9EE0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{51C4CA5A-27E8-42DC-9AED-62D617E9EE0B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D25F465C-3F23-4335-A0C5-022363F8D70A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D25F465C-3F23-4335-A0C5-022363F8D70A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D25F465C-3F23-4335-A0C5-022363F8D70A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D25F465C-3F23-4335-A0C5-022363F8D70A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
