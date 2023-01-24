@@ -15,5 +15,7 @@ namespace Database.AppDbContexts
         public virtual DbSet<TreeDb> TreeDbs { get; set; }
         public virtual DbSet<FarmAreaDb> FarmAreaDbs{ get; set; }
 
+
+
     }
 }

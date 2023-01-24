@@ -7,7 +7,7 @@ namespace Repository.BusinessModels
         /// <summary>
         /// Gets or internal sets id of area.
         /// </summary>
-        public int Id { get; }
+        public int Id { get; internal set; }
 
         /// <summary>
         /// Gets or internal sets the capacity of area

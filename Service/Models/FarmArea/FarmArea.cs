@@ -7,7 +7,7 @@ namespace Database.Entities.FarmArea
         /// <summary>
         /// Gets or internal sets id of farm area
         /// </summary>
-        public int Id { get; internal set; }
+        public int Id { get; }
 
         /// <summary>
         /// Gets or internal sets the capacity of area 
