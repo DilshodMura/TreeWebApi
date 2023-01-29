@@ -1,7 +1,7 @@
-﻿using Database.Entities.FarmArea;
-using Domain.ModelInterfaces.FarmArea;
+﻿using Domain.ModelInterfaces.FarmArea;
 using Domain.RepositoryInterfaces;
 using Domain.ServiceInterfaces;
+using Service.Models.FarmArea;
 
 namespace Service.Services
 {

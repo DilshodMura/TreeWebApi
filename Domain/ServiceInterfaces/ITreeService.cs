@@ -1,5 +1,4 @@
-﻿using Domain.Enums;
-using Domain.ModelInterfaces.BaseTree;
+﻿using Domain.ModelInterfaces.BaseTree;
 
 namespace Domain.ServiceInterfaces
 {
@@ -8,7 +7,7 @@ namespace Domain.ServiceInterfaces
         /// <summary>
         /// Add new tree
         /// </summary>
-        public Task AddTree(int count, TreeSorts sorts, int areaId);
+        public Task AddTree(int count, int sortId, int areaId);
 
         /// <summary>
         /// Get all trees
@@ -26,14 +25,13 @@ namespace Domain.ServiceInterfaces
         public Task<double> GetMaxFruitelness(int areaId);
 
         /// <summary>
-        /// Delete tree
-        /// </summary>
-        public Task DeleteAsync(int count, int areaId, TreeSorts sort);
-
-        /// <summary>
         /// Calculates capacity of trees
         /// </summary>
         public Task<double> AreaCapacity(int areaId);
 
+        /// <summary>
+        /// Delete tree
+        /// </summary>
+        public Task DeleteAsync(int treeId);
     }
 }

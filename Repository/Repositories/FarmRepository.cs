@@ -10,13 +10,10 @@ namespace Repository.Repositories
 {
     public sealed class FarmRepository : IFarmRepository
     {
-
-        private readonly AppDbContext _appDbContext;
         private readonly IMapper _mapper;
 
-        public FarmRepository(AppDbContext appDbContext, IMapper mapper)
+        public FarmRepository(IMapper mapper)
         {
-            _appDbContext = appDbContext;
             _mapper = mapper;
         }
 
@@ -25,8 +22,9 @@ namespace Repository.Repositories
         /// </summary>
         public async Task AddFarmArea(IFarmArea farm)
         {
-            await _appDbContext.AddAsync(_mapper.Map<FarmAreaDb>(farm));
-            await _appDbContext.SaveChangesAsync();
+            await using var dbContext = new AppDbContext();
+            await dbContext.AddAsync(_mapper.Map<FarmAreaDb>(farm));
+            await dbContext.SaveChangesAsync();
         }
 
         /// <summary>
@@ -34,11 +32,12 @@ namespace Repository.Repositories
         /// </summary>
         public async Task DeleteFarmArea(int id)
         {
-            var farmArea = await _appDbContext.FarmAreaDbs.FirstOrDefaultAsync(c => c.Id == id);
+            await using var dbContext = new AppDbContext();
+            var farmArea = await dbContext.FarmAreaDbs.FirstOrDefaultAsync(c => c.Id == id);
             if (farmArea != null)
             {
-                _appDbContext.FarmAreaDbs.Remove(farmArea);
-                await _appDbContext.SaveChangesAsync();
+                dbContext.FarmAreaDbs.Remove(farmArea);
+                await dbContext.SaveChangesAsync();
             }
         }
 
@@ -47,7 +46,8 @@ namespace Repository.Repositories
         /// </summary>
         public async Task<IFarmArea> GetFarmAreaById(int id)
         {
-            var result = await _appDbContext.FarmAreaDbs.FirstOrDefaultAsync(c => c.Id == id);
+            await using var dbContext = new AppDbContext();
+            var result = await dbContext.FarmAreaDbs.FirstOrDefaultAsync(c => c.Id == id);
             return _mapper.Map<FarmModel>(result); 
         }
 
@@ -56,13 +56,14 @@ namespace Repository.Repositories
         /// </summary>
         public async Task UpdateFarmArea(int areaId,IFarmArea area)
         {
-            var farmDb = await _appDbContext.FarmAreaDbs.FirstOrDefaultAsync(x => x.Id == areaId);
+            await using var dbContext = new AppDbContext();
+            var farmDb = await dbContext.FarmAreaDbs.FirstOrDefaultAsync(x => x.Id == areaId);
             if (farmDb is null)
                 throw new Exception("Tree can not be found");
 
-            _appDbContext.FarmAreaDbs.Update(_mapper.Map(area, farmDb));
+            dbContext.FarmAreaDbs.Update(_mapper.Map(area, farmDb));
 
-            await _appDbContext.SaveChangesAsync();
+            await dbContext.SaveChangesAsync();
         }
 
         /// <summary>
@@ -70,7 +71,8 @@ namespace Repository.Repositories
         /// </summary>
         public async Task<IFarmArea[]> GetAllAreasAsync()
         {
-            return await _appDbContext.FarmAreaDbs.Select(farmarea => _mapper.Map<FarmModel>(farmarea)).ToArrayAsync();
+            await using var dbContext = new AppDbContext();
+            return await dbContext.FarmAreaDbs.Select(farmarea => _mapper.Map<FarmModel>(farmarea)).ToArrayAsync();
         }
     }
 }

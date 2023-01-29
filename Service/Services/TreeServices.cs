@@ -1,10 +1,7 @@
-﻿using Database.Entities.Apples;
-using Database.Entities.Cherries;
-using Domain.Enums;
-using Domain.ModelInterfaces.BaseTree;
+﻿using Domain.ModelInterfaces.BaseTree;
 using Domain.RepositoryInterfaces;
 using Domain.ServiceInterfaces;
-using System.Formats.Asn1;
+using Service.Models.BaseTree;
 
 namespace Service.Services
 {
@@ -12,67 +9,36 @@ namespace Service.Services
     {
         private readonly ITreeRepository _treeRepository;
         private readonly IFarmRepository _fararmRepository;
-        public TreeServices(ITreeRepository treeRepository, IFarmRepository fararmRepository)
+        private readonly ITreeSortRepository _treeSortRepository;
+        public TreeServices(ITreeRepository treeRepository, IFarmRepository fararmRepository, ITreeSortRepository treeSortRepository)
         {
             _treeRepository = treeRepository;
             _fararmRepository = fararmRepository;
+            _treeSortRepository = treeSortRepository;
         }
 
         /// <summary>
         /// Add tree
         /// </summary>
-        public async Task AddTree(int count, TreeSorts sorts, int areaId)
+        public async Task AddTree(int count, int sortId, int areaId)
         {
             var farmID = await _fararmRepository.GetFarmAreaById(areaId);
             if(farmID == null)
             {
                 throw new Exception("Farm ID has not been found!");
             }
-            var sort = await _treeRepository.GetBySort(sorts);
-
-            if(sort == null)
+            var treeSort = await _treeSortRepository.GetById(sortId);
+            IList<IBaseTree> trees = new List<IBaseTree>();
+            for(int index = 0; index < count; index++)
             {
-                switch (sorts)
+                var treeObj = new TreeModel()
                 {
-                    case TreeSorts.Golden:
-                        var treeGolden = new AppleGolden()
-                        {
-                            Amount = count,
-                            AreaId = areaId
-                        };
-                        await _treeRepository.AddTreesAsync(treeGolden);
-                        break;
-                    case TreeSorts.Semerenko:
-                        var treeSemerenko = new AppleSemerenko()
-                        {
-                            Amount = count,
-                            AreaId = areaId
-                        };
-                        await _treeRepository.AddTreesAsync(treeSemerenko);
-                        break;
-                    case TreeSorts.Oakland:
-                        var treeOkland = new OklandCherry()
-                        {
-                            Amount = count,
-                            AreaId = areaId
-                        };
-                        await _treeRepository.AddTreesAsync(treeOkland);
-                        break;
-                    case TreeSorts.Frosty:
-                        var treeFrosty = new FrostyCherry()
-                        {
-                            Amount = count,
-                            AreaId = areaId
-                        };
-                        await _treeRepository.AddTreesAsync(treeFrosty);
-                        break;
-                }
+                    TreeSortId = sortId,
+                    AreaId = areaId
+                };
+                trees.Add(treeObj);
             }
-            else
-            {
-                sort.Amount += count;
-                await _treeRepository.UpdateAsync(sort.Id, sort);
-            }
+            await _treeRepository.AddTreesAsync(trees);
         }
 
         /// <summary>
@@ -80,23 +46,15 @@ namespace Service.Services
         /// </summary>
         public async Task<IBaseTree[]> GetAllTrees()
         {
-           return await _treeRepository.GetAllAsync();
+           return await _treeRepository.GetAllTreesAsync();
         }
 
-        public async Task DeleteAsync(int count, int areaId, TreeSorts sort)
+        /// <summary>
+        /// Delete tree
+        /// </summary>
+        public async Task DeleteAsync(int treeId)
         {
-            var area = await _fararmRepository.GetFarmAreaById(areaId);
-            if(area== null)
-            {
-                throw new Exception("Area not found");
-            }
-            var treeSort = await _treeRepository.GetBySort(sort);
-            if (sort == null)
-                throw new Exception("Tree sort has not been found");
-            if ((treeSort.Amount -= count) < 0)
-                throw new Exception("Not enough trees to remove");
-            treeSort.Amount -= count;
-            await _treeRepository.UpdateAsync(treeSort.Id, treeSort);
+            await _treeRepository.DeleteTree(treeId);
         }
 
         /// <summary>

@@ -19,6 +19,11 @@ builder.Services.AddScoped<ITreeRepository, TreeRepository>();
 builder.Services.AddScoped<ITreeService,TreeServices>();
 builder.Services.AddScoped<IFarmRepository, FarmRepository>();
 builder.Services.AddScoped<IFarmService, FarmService>();
+builder.Services.AddScoped<ITreeSortRepository, TreeSortRepository>();
+builder.Services.AddScoped<ITreeSortService, TreeSortService>();
+builder.Services.AddScoped<ITreeTypeRepository, TreeTypeRepository>();
+builder.Services.AddScoped<ITreeTypeService, TreeTypeService>();
+
 builder.Services.AddAutoMapper(typeof(Mapper));
 
 var app = builder.Build();

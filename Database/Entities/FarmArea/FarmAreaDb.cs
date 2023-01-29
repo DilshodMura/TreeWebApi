@@ -17,6 +17,6 @@ namespace Database.Entities.FarmArea
         /// <summary>
         /// foreign key for trees that area contains
         /// </summary>
-        ICollection<TreeDb> trees { get; set; }
+        public virtual ICollection<TreeDb> trees { get; set; }
     }
 }

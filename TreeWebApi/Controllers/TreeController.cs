@@ -1,4 +1,4 @@
-﻿using Domain.Enums;
+﻿using Domain.ModelInterfaces.TreeSort;
 using Domain.ServiceInterfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -29,18 +29,18 @@ namespace TreeWebApi.Controllers
         /// Add tree
         /// </summary>
         [HttpPost("AddTrees")]
-        public async Task AddTrees(TreeSorts treeSorts, int count, int areaId)
+        public async Task AddTrees(int sortId, int count, int areaId)
         {
-            await _treeService.AddTree(count, treeSorts, areaId);
+            await _treeService.AddTree(count, sortId, areaId);
         }
 
         /// <summary>
         /// Delete tree
         /// </summary>
         [HttpDelete("DeleteTrees")]
-        public async Task DeleteTree(int treeId, int areaId, TreeSorts sort)
+        public async Task DeleteTree(int treeId)
         {
-            await _treeService.DeleteAsync(treeId, areaId, sort);
+            await _treeService.DeleteAsync(treeId);
         }
 
         /// <summary>

@@ -1,26 +1,12 @@
-﻿using Domain.ModelInterfaces.FarmArea;
-using Domain.ModelInterfaces.TreeSort;
-
-namespace Domain.ModelInterfaces.BaseTree
+﻿
+namespace Domain.ModelInterfaces.TreeSort
 {
-    public interface IBaseTree
+    public interface ITreeSort
     {
         /// <summary>
-        /// Gets or sets tree id.
+        /// Gets or sets id of sort
         /// </summary>
         public int Id { get; }
-
-        /// <summary>
-        /// Gets or sets sort of tree.
-        /// </summary>
-        public int TreeSortId { get; }
-
-        public ITreeSort TreeSort { get; }
-
-        /// <summary>
-        /// Gets or sets foreign key for area
-        /// </summary>
-        public int AreaId { get; set; }
 
         /// <summary>
         /// Gets or sets name of sort
@@ -28,7 +14,7 @@ namespace Domain.ModelInterfaces.BaseTree
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or sets the max height of tree
+        /// Gets or sets the max height of tree sort 
         /// </summary>
         public double MaxHeight { get; set; }
 
@@ -41,5 +27,10 @@ namespace Domain.ModelInterfaces.BaseTree
         /// Gets or sets in how many years the tree will give fruits
         /// </summary>
         public double MaxFruitliness { get; set; }
+
+        /// <summary>
+        /// Gets or sets the type id for sorts
+        /// </summary>
+        public int TreeTypeId { get; set; }
     }
 }

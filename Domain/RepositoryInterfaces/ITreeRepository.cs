@@ -1,5 +1,4 @@
-﻿using Domain.Enums;
-using Domain.ModelInterfaces.BaseTree;
+﻿using Domain.ModelInterfaces.BaseTree;
 
 namespace Domain.RepositoryInterfaces
 {
@@ -8,32 +7,27 @@ namespace Domain.RepositoryInterfaces
         /// <summary>
         /// Add new tree
         /// </summary>
-        public Task AddTreesAsync(IBaseTree trees);
+        public Task AddTreesAsync(IEnumerable<IBaseTree> trees);
 
         /// <summary>
         /// Get all trees
         /// </summary>
-        public Task<IBaseTree[]> GetAllAsync();
+        public Task<IBaseTree[]> GetAllTreesAsync();
 
         /// <summary>
         /// Delete particular tree
         /// </summary>
-        public Task Delete(int id);
+        public Task DeleteTree(int id);
 
         /// <summary>
         /// Gets particular tree by id
         /// </summary>
-        public Task<IBaseTree> GetById(int id);
-
-        /// <summary>
-        /// Gets particular tree by sort
-        /// </summary>
-        public Task<IBaseTree> GetBySort(TreeSorts sort);
+        public Task<IBaseTree> GetTreeById(int id);
 
         /// <summary>
         /// Update particular tree by id
         /// </summary>
-        public Task UpdateAsync(int id, IBaseTree tree);
+        public Task UpdateTreeAsync(IBaseTree tree);
 
         /// <summary>
         /// Calculates average height in particular area

@@ -1,21 +1,20 @@
-﻿using Domain.ModelInterfaces.FarmArea;
+﻿using Domain.ModelInterfaces.BaseTree;
 using Domain.ModelInterfaces.TreeSort;
 
-namespace Domain.ModelInterfaces.BaseTree
+namespace Repository.BusinessModels
 {
-    public interface IBaseTree
+    public sealed class TreeBusinessModel : IBaseTree
     {
         /// <summary>
         /// Gets or sets tree id.
         /// </summary>
-        public int Id { get; }
+        public int Id { get; internal set; }
 
         /// <summary>
         /// Gets or sets sort of tree.
         /// </summary>
-        public int TreeSortId { get; }
-
-        public ITreeSort TreeSort { get; }
+        public int TreeSortId { get; internal set; }
+        public ITreeSort TreeSort { get; internal set; }
 
         /// <summary>
         /// Gets or sets foreign key for area

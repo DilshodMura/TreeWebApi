@@ -1,26 +1,24 @@
-﻿using Domain.ModelInterfaces.FarmArea;
+﻿using Domain.ModelInterfaces.BaseTree;
+using Domain.ModelInterfaces.FarmArea;
 using Domain.ModelInterfaces.TreeSort;
 
-namespace Domain.ModelInterfaces.BaseTree
+namespace Service.Models.BaseTree
 {
-    public interface IBaseTree
+    public sealed class TreeModel : IBaseTree
     {
-        /// <summary>
-        /// Gets or sets tree id.
-        /// </summary>
-        public int Id { get; }
+        public int Id { get; set; }
 
         /// <summary>
-        /// Gets or sets sort of tree.
+        /// Gets or sets the tree sort id
         /// </summary>
-        public int TreeSortId { get; }
-
+        public int TreeSortId { get; set; }
         public ITreeSort TreeSort { get; }
 
         /// <summary>
-        /// Gets or sets foreign key for area
+        /// Gets or sets the area id
         /// </summary>
         public int AreaId { get; set; }
+        public IFarmArea Area { get; set; }
 
         /// <summary>
         /// Gets or sets name of sort
